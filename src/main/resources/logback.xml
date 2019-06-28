@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2018 MAMCHARGE 深圳智链物联科技有限公司. <http://www.mamcharge.com>
+  ~
+  -->
+
+<configuration>
+    <property name="Max_History" value="4320" />
+    <property name="Logfile_Root" value="log/${hostname}/" />
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <pattern>%-5level [|] %date{yyyy-MM-dd HH:mm:ss.SS} [|] %logger{80} %X{akkaSource} %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="default" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${Logfile_Root}default-access-router.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${Logfile_Root}default-access-router.%d{yyyy-MM-dd-HH-mm}.log</fileNamePattern>
+            <maxHistory>${Max_History}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-5level [|] %date{yyyy-MM-dd HH:mm:ss.SS} [|] %logger{80} %X{akkaSource} %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="router" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${Logfile_Root}access-router.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${Logfile_Root}access-router.%d{yyyy-MM-dd-HH-mm}.log</fileNamePattern>
+            <maxHistory>${Max_History}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-5level [|] %date{yyyy-MM-dd HH:mm:ss.SS} [|] %logger{80} %X{akkaSource} %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="com.mamcharge.access.router" level="debug" additivity="false">
+        <appender-ref ref="router"/>
+    </logger>
+
+    <root>
+        <!--<appender-ref ref="console"/>-->
+        <appender-ref ref="default"/>
+    </root>
+
+</configuration>

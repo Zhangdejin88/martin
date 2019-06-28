@@ -42,7 +42,7 @@ lazy val project = Project(
         "com.alibaba" % "fastjson" % "1.2.49",
 
         // Access
-        "com.mamcharge.access" %% "access-library-common" % "0.1.11",
+        "com.mamcharge.access" %% "access-library-common" % "0.1.12",
         "com.mamcharge.access" %% "access-library-mysql" % "0.1.3",
         "com.mamcharge.access" %% "message-core" % "0.1.2"
       )
